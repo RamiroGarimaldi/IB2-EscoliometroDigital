@@ -171,6 +171,13 @@ class registro(tk.Frame):
             consulta = "INSERT INTO Medicos (Nombre, Apellido, Matricula, Contraseña, Usuario) VALUES (?, ?, ?, ?, ?)"
             parametros = (nombre, apellido, matricula, con, usuario)
             self.consulta(consulta, parametros)
+            with sqlite3.connect(db_name) as conn:
+                cursor = conn.cursor()
+                cursor.execute("SELECT IdMedico FROM Medicos WHERE Usuario = ?", (usuario,))
+                result = cursor.fetchone()
+                if result:
+                    global IdMedico
+                    IdMedico = result[0]
             self.controlRegistro(usuario)
     
     def controlRegistro(self, usuario):

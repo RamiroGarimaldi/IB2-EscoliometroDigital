@@ -1,0 +1,6 @@
+#Librerías necesarias para la interfaz gráfica
+
+matplotlib
+numpy
+Pillow
+mplcursors
